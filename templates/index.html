@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <h1>คำนวณค่า BMI</h1>
+            <form method="POST">
+                <label>น้ำหนัก (kg)</label>
+                <input type="number" step="0.1" name="weight" required>
+
+                <label>ส่วนสูง (cm)</label>
+                <input type="number" step="0.1" name="height" required>
+
+                <button type="submit">คำนวณ</button>
+            </form>
+
+            {% if bmi %}
+            <div class="result">
+                <p>ค่า BMI ของคุณคือ: <strong>{{ status }}</strong></p>
+            </div>
+            {% endif %}
+        </div>
+    </body>
+    </html>
