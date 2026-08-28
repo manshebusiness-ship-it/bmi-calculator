@@ -21,7 +21,7 @@ def index():
         elif bmi < 30:
             status = "อ้วน"
         else:
-            status = "อ้วนมาก(อิอ้วนมิจิ)"
+            status = "อ้วนมาก"
     return render_template("index.html", bmi=bmi, status=status)
 
 if __name__ == "__main__":
