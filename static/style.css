@@ -1,26 +1,228 @@
+:root {
+    --bg-page: #f4f6f9;
+    --bg-card: #ffffff;
+    --bg-box: #f8f9fb;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --border-color: #eeeeee;
+    --input-border: #dddddd;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --shadow: rgba(0,0,0,0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-page: #121417;
+        --bg-card: #1c1f24;
+        --bg-box: #24272d;
+        --text-primary: #f0f0f0;
+        --text-secondary: #b0b0b0;
+        --text-muted: #808080;
+        --border-color: #333333;
+        --input-border: #444444;
+        --accent: #3b82f6;
+        --accent-hover: #60a5fa;
+        --shadow: rgba(0,0,0,0.4);
+    }
+}
+
 body {
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f4f4f4;
-    font-family: sans-serif;
+    background: var(--bg-page);
+    font-family: 'Segoe UI', sans-serif;
+    transition: background 0.3s;
 }
+
 .container {
-    background: white;
-    padding: 30px;
+    background: var(--bg-card);
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px var(--shadow);
+    width: 340px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    color: var(--accent);
+}
+
+.icon-sm {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    vertical-align: -6px;
+    flex-shrink: 0;
+}
+.icon-img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+h1 {
+    font-size: 18px;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-top: 12px;
+    margin-bottom: 4px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 15px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+}
+
+.calc-link {
+    font-size: 12px;
+    color: var(--accent);
+    margin: 8px 0 0;
+    cursor: pointer;
+}
+
+.formula-box {
+    display: none;
+    margin-top: 6px;
+    padding: 8px 10px;
+    background: var(--bg-box);
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.formula-box.show { display: block; }
+
+button {
+    width: 100%;
+    margin-top: 16px;
+    padding: 12px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover { background: var(--accent-hover); }
+
+.result { margin-top: 24px; }
+
+.bmi-box {
+    background: var(--bg-box);
     border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 16px;
     text-align: center;
 }
-input, button {
-    display: block;
-    margin: 10px auto;
-    padding: 8px;
-    width: 200px;
+
+.label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 0 0 4px;
 }
-.result {
+
+.bmi-value {
+    font-size: 38px;
+    font-weight: bold;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.status-blue { background: #3b82f6; }
+.status-green { background: #22c55e; }
+.status-orange { background: #f97316; }
+.status-red { background: #ef4444; }
+.status-darkred { background: #991b1b; }
+
+.advice-section {
     margin-top: 20px;
-    font-size: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.advice-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.advice-row p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.disclaimer {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: var(--bg-box);
+    border-radius: 8px;
+    border-left: 2px solid var(--input-border);
+}
+
+.disclaimer p {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.footer {
+    margin-top: 20px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.footer p {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.fade-in { animation: fadeIn 0.5s ease-in; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
 }

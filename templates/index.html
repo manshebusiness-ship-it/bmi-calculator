@@ -2,27 +2,64 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <title>BMI Calculator</title>
+    <title>เครื่องคำนวณดัชนีมวลกาย</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    </head>
-    <body>
-        <div class="container">
-            <h1>คำนวณค่า BMI</h1>
-            <form method="POST">
-                <label>น้ำหนัก (kg)</label>
-                <input type="number" step="0.1" name="weight" required>
+</head>
+<body>
+    <div class="container">
+       <div class="header">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+    </svg>
+    <h1>เครื่องคำนวณดัชนีมวลกาย</h1>
+</div>
+        <form method="POST">
+            <label>น้ำหนัก (kg)</label>
+            <input type="number" step="0.1" name="weight" placeholder="60" required>
 
-                <label>ส่วนสูง (cm)</label>
-                <input type="number" step="0.1" name="height" required>
+            <label>ส่วนสูง (cm)</label>
+            <input type="number" step="0.1" name="height" placeholder="170" required>
 
-                <button type="submit">คำนวณ</button>
-            </form>
-
-            {% if bmi %}
-            <div class="result">
-                <p>ค่า BMI ของคุณคือ: <strong>{{ status }}</strong></p>
+          <p class="calc-link" onclick="document.getElementById('formula-box').classList.toggle('show')">
+    <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="16" x2="12" y2="12"/>
+        <line x1="12" y1="8" x2="12.01" y2="8"/>
+    </svg> ดูวิธีคำนวณ BMI
+</p>
+            <div id="formula-box" class="formula-box">
+                BMI = น้ำหนัก (kg) ÷ ส่วนสูง (m)²
             </div>
-            {% endif %}
+
+            <button type="submit">คำนวณผล</button>
+        </form>
+
+        {% if bmi %}
+        <div class="result fade-in">
+            <div class="bmi-box">
+                <p class="label">ค่า BMI ของคุณ</p>
+                <p class="bmi-value">{{ bmi }}</p>
+                <span class="status-badge status-{{ color }}">{{ status }}</span>
+            </div>
+
+            <div class="advice-section">
+               <div class="advice-row">
+    <img src="{{ url_for('static', filename='images/vagetables.png') }}" class="icon-img" alt="อาหาร">
+    <p>{{ diet_advice }}</p>
+</div>
+                <div class="advice-row">
+    <img src="{{ url_for('static', filename='images/exercises.png') }}" class="icon-img" alt="ออกกำลังกาย">
+    <p>{{ exercise_advice }}</p>
+</div>
+            <div class="disclaimer">
+                <p>เกณฑ์อ้างอิงจากองค์การอนามัยโลก (WHO) ผลลัพธ์นี้เป็นข้อมูลเบื้องต้นเท่านั้น ไม่ใช่คำวินิจฉัยทางการแพทย์ ควรปรึกษาแพทย์เพื่อการประเมินที่แม่นยำ</p>
+            </div>
         </div>
-    </body>
-    </html>
+        {% endif %}
+
+        <div class="footer">
+            <p>BMI Calculator · 2569</p>
+        </div>
+    </div>
+</body>
+</html>
